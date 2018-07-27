@@ -14,14 +14,16 @@
 
 <body>
 
+    <h1>Jeopardy Trainer</h1>
+
     <div id="buttons">
-        <button id="get-question" class="btn btn-primary">GET QUESTION</button>
+        <button id="start" class="btn btn-primary">START</button>
         <button id="reset-score" class="btn btn-secondary hidden">RESET SCORE</button>
     </div>
 
     <!--this is NOT the id of the question. Instead, it is the number of questions attempted
         resetting the score sets this number to 0.-->
-    <p>Question Number: <span id="question-number"></span></p>
+    <h2 id="score" class="hidden">Score: <span id="score">0</span></h2>
 
     <!--this is the area of the page where the question card will be displayed-->
     <div id="question">
@@ -30,9 +32,12 @@
 
 
     <template id="question-template">
-        <div class="card">
-            <div class="question">
+        <div>
+            <div class="question card">
                 <!--this is where the question will go-->
+                <p class="question"></p>
+                <p class="difficulty"></p>
+                <p class="category"></p>
             </div>
             <div class="answer card hidden">
                 <!--this is where the answer will go-->

@@ -8,6 +8,25 @@ body {
     margin: 10px 10px 10px 10px;
 }
 
+/*Heading CSS*/
+
+h1 {    
+    font-family: Helvetica;
+    font-size: 5em;
+    font-weight: bold;
+}
+
+h2 {
+    font: Helvetica;
+    font-size: 3em;
+    font-weight: bold;
+}
+
+p {
+    font: Helvetica;
+}
+
+
 /*this is the class that is used to create the question card.*/
 .card {
     width: calc(100% - 30px);
