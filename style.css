@@ -1,5 +1,12 @@
 
-
+/*A little padding just to keep things clean*/
+body {
+    padding-top: 50px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    margin: 10px 10px 10px 10px;
+}
 
 /*this is the class that is used to create the question card.*/
 .card {
@@ -48,4 +55,9 @@
     border-image-outset: initial;
     border-image-repeat: initial;
     box-shadow: 3px 3px 0px #bababa;
+}
+
+/*hidden class used to hide answers (and other secrets)*/
+.hidden {
+    display: none;
 }
