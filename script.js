@@ -66,8 +66,4 @@ function addQuestionToPage(question) {
     questionTemplate.querySelector('p.category').innerText = question[0].category.title;
 
     document.querySelector('div#question').insertAdjacentElement('beforebegin', questionTemplate);
-
-
-
-
 }
