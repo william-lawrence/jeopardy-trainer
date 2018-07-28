@@ -80,3 +80,21 @@ p {
 .hidden {
     display: none;
 }
+
+.question-text {
+    font: Helvetica;
+    font-weight: 500;
+    font-size: 1.2em;
+}
+
+.difficulty {
+    font: Helvetica;
+    font-size: 1em;
+    font-weight: 300;
+}
+
+.category {
+    font: Helvetica;
+    font-size: 1em;
+    font-weight: 300;   
+}
