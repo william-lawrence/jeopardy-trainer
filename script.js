@@ -61,7 +61,7 @@ function addQuestionToPage(question) {
     document.querySelector('button#start').classList.add('hidden');
 
     // Sets ths text of the question
-    questionTemplate.querySelector('p.question').innerText = `${question[0].question}`;
+    questionTemplate.querySelector('p.question-text').innerText = `${question[0].question}`;
     questionTemplate.querySelector('p.difficulty').innerText = `Difficulty: ${question[0].value}`;
     questionTemplate.querySelector('p.category').innerText = `Category: ${question[0].category.title}`;
 
