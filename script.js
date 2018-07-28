@@ -71,7 +71,7 @@ function addQuestionToPage(question) {
 }
 
 /**
- * Adds all the handlers to the buttons on the question template.
+ * Adds all the handlers to the buttons on the question template.   
  */
 function addEventHandlersForNewQuestion() {
     document.querySelector('button#show-answer').addEventListener('click', (event) => {
