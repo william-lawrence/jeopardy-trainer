@@ -17,13 +17,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // listen for a click on the get question button and gets the question.
     document.querySelector('button#start').addEventListener('click', (event) => {
-        getNewQuestion();
-        
-
+        event.preventDefault();
+        const newQuestion = getNewQuestion();
     });
 });
 
-let question_id;
+let question;
 let score = 0; // this variable keeps track of the score as the number of the questions answered correctly.
 
 /**
@@ -32,16 +31,18 @@ let score = 0; // this variable keeps track of the score as the number of the qu
 function getNewQuestion() {
     const url = 'http://jservice.io/api/random';
     const settings = {
-        method:'GET'
+        method: 'GET'
     };
 
     fetch(url, settings)
-    .then(response => response.json())
-    .then(json => {
-        console.log(json);
-        addQuestionToPage(json);
-    });
+        .then(response => response.json())
+        .then(json => {
+            console.log(json);
+            addQuestionToPage(json);
+            addEventHandlersForNewQuestion();
+        });
 }
+
 
 /**
  * Adds the question called from the API to the page.
@@ -56,7 +57,7 @@ function addQuestionToPage(question) {
     // Reveals the score.
     const p = document.querySelector('h2#score');
     p.classList.remove('hidden')
-    
+
     // Hides the start button.
     document.querySelector('button#start').classList.add('hidden');
 
@@ -64,6 +65,14 @@ function addQuestionToPage(question) {
     questionTemplate.querySelector('p.question-text').innerText = `${question[0].question}`;
     questionTemplate.querySelector('p.difficulty').innerText = `Difficulty: ${question[0].value}`;
     questionTemplate.querySelector('p.category').innerText = `Category: ${question[0].category.title}`;
+    questionTemplate.querySelector('p.answer-text').innerText = `${question[0].answer}`; 
 
     document.querySelector('div#question').insertAdjacentElement('beforebegin', questionTemplate);
+}
+
+function addEventHandlersForNewQuestion() {
+    document.querySelector('button#show-answer').addEventListener('click', (event) => {
+        event.currentTarget.parentNode.classList.add('hidden');
+        event.currentTarget.parentNode.nextElementSibling.classList.remove('hidden');
+    });
 }
