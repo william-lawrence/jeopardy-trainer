@@ -47,7 +47,7 @@ function getNewQuestion() {
 /**
  * Adds the question called from the API to the page.
  * @param {Object} question the question to be added to the page.
- */
+ */ 
 function addQuestionToPage(question) {
     console.log('Adding question to page.');
 
@@ -70,9 +70,26 @@ function addQuestionToPage(question) {
     document.querySelector('div#question').insertAdjacentElement('beforebegin', questionTemplate);
 }
 
+/**
+ * Adds all the handlers to the buttons on the question template.
+ */
 function addEventHandlersForNewQuestion() {
     document.querySelector('button#show-answer').addEventListener('click', (event) => {
         event.currentTarget.parentNode.classList.add('hidden');
         event.currentTarget.parentNode.nextElementSibling.classList.remove('hidden');
     });
+
+    document.querySelector('button#correct').addEventListener('click', (event)=>{
+        check();
+    });
+
+    document.querySelector('button#incorrect').addEventListener('click', (event)=>{
+        check();
+    });
+
+
+}
+
+function check() {
+    alert('check')
 }
