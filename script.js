@@ -83,17 +83,24 @@ function addEventHandlersForNewQuestion() {
         event.currentTarget.parentNode.nextElementSibling.classList.remove('hidden');
     });
 
+    // Adds the event handlers to the 'correct' button.
     document.querySelector('button#correct').addEventListener('click', (event)=>{
         check();
     });
 
+    // Adds the event handlers to the 'incorrect' button.
     document.querySelector('button#incorrect').addEventListener('click', (event)=>{
         check();
     });
 
-
+    // Adds the event handlers to the 'reset' button.
+    document.querySelector('button#reset').addEventListener('click', (event) => {
+        check();
+    });
 }
 
+
+// Function used to make sure that handlers are functional.
 function check() {
     alert('check')
 }
