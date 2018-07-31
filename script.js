@@ -61,6 +61,10 @@ function addQuestionToPage(question) {
     // Hides the start button.
     document.querySelector('button#start').classList.add('hidden');
 
+    // Reveals the reset button. 
+    // This button is used to reset the score.
+    document.querySelector('button#reset').classList.remove('hidden');
+
     // Sets ths text of the question
     questionTemplate.querySelector('p.question-text').innerText = `${question[0].question}`;
     questionTemplate.querySelector('p.difficulty').innerText = `Difficulty: ${question[0].value}`;
