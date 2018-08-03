@@ -38,11 +38,19 @@ function getNewQuestion() {
         .then(response => response.json())
         .then(json => {
             console.log(json);
-            addQuestionToPage(json);
+            addQuestionToPage(processQuestion(json));
             addEventHandlersForNewQuestion();
         });
 }
 
+/**
+ * Removes leading <i> and trailing </i> from the answer.
+ */
+function processQuestion(question) {
+    let processedAnswer = question[0].answer;
+    if (processedAnswer.startsWith('<i>') && processedAnswer.endsWith('</i>')) processedAnswer = processedAnswer.substr(3, processedAnswer.length - 7);
+    return question;
+}
 
 /**
  * Adds the question called from the API to the page.
