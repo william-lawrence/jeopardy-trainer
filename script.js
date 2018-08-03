@@ -69,6 +69,10 @@ function addQuestionToPage(question) {
     // Hides the start button.
     document.querySelector('button#start').classList.add('hidden');
 
+    // Reveals the reset button. 
+    // This button is used to reset the score.
+    document.querySelector('button#reset').classList.remove('hidden');
+
     // Sets ths text of the question
     questionTemplate.querySelector('p.question-text').innerText = `${question[0].question}`;
     questionTemplate.querySelector('p.difficulty').innerText = `Difficulty: ${question[0].value}`;
@@ -87,17 +91,24 @@ function addEventHandlersForNewQuestion() {
         event.currentTarget.parentNode.nextElementSibling.classList.remove('hidden');
     });
 
+    // Adds the event handlers to the 'correct' button.
     document.querySelector('button#correct').addEventListener('click', (event)=>{
         check();
     });
 
+    // Adds the event handlers to the 'incorrect' button.
     document.querySelector('button#incorrect').addEventListener('click', (event)=>{
         check();
     });
 
-
+    // Adds the event handlers to the 'reset' button.
+    document.querySelector('button#reset').addEventListener('click', (event) => {
+        check();
+    });
 }
 
+
+// Function used to make sure that handlers are functional.
 function check() {
     alert('check')
 }
