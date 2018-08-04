@@ -22,14 +22,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-let question;
+let question; // The data pulled from the question API.
 let score = 0; // this variable keeps track of the score as the number of the questions answered correctly.
 
 /**
  * Gets a jeopardy question using the jservice API.
  */
 function getNewQuestion() {
-    const url = 'http://jservice.io/api/random';
+    const url = 'http://jservice.io/api/random'; // THANKS FOR THE APIs
     const settings = {
         method: 'GET'
     };
@@ -38,13 +38,14 @@ function getNewQuestion() {
         .then(response => response.json())
         .then(json => {
             console.log(json);
-            addQuestionToPage(processQuestion(json));
+            question = json;
+            addQuestionToPage(processQuestion(question));
             addEventHandlersForNewQuestion();
         });
 }
 
 /**
- * Removes leading <i> and trailing </i> from the answer.
+ * Removes leading <i> and trailing </i> from the answer if it exists.
  */
 function processQuestion(question) {
     let processedAnswer = question[0].answer;
@@ -73,7 +74,7 @@ function addQuestionToPage(question) {
     // This button is used to reset the score.
     document.querySelector('button#reset').classList.remove('hidden');
 
-    // Sets ths text of the question
+    // Sets the text of the question
     questionTemplate.querySelector('p.question-text').innerText = `${question[0].question}`;
     questionTemplate.querySelector('p.difficulty').innerText = `Difficulty: ${question[0].value}`;
     questionTemplate.querySelector('p.category').innerText = `Category: ${question[0].category.title}`;
@@ -93,22 +94,45 @@ function addEventHandlersForNewQuestion() {
 
     // Adds the event handlers to the 'correct' button.
     document.querySelector('button#correct').addEventListener('click', (event)=>{
-        check();
+        updateScoreForCorrectAnswer();
+        removeQuestionFromPage();
+        getNewQuestion();
     });
 
     // Adds the event handlers to the 'incorrect' button.
     document.querySelector('button#incorrect').addEventListener('click', (event)=>{
-        check();
+        removeQuestionFromPage();
+        getNewQuestion();
     });
 
     // Adds the event handlers to the 'reset' button.
     document.querySelector('button#reset').addEventListener('click', (event) => {
-        check();
+        removeQuestionFromPage();
+        resetScore();
+        getNewQuestion();
     });
 }
 
+/**
+ * updates the score when the user answer correctly.
+ */
+function updateScoreForCorrectAnswer() {
+    score = score + question[0].value;
+    document.querySelector('h2#score').innerText = score.toString();
+}
 
-// Function used to make sure that handlers are functional.
-function check() {
-    alert('check')
+/**
+ * Resets the score of the game and updates it on the display.
+ */
+function resetScore() {
+    score = 0; // Resets the score
+    document.querySelector('h2#score').innerText = score.toString();
+}
+
+/**
+ * Removes the current question and answer from the page. 
+ */
+function removeQuestionFromPage() {
+    document.querySelector('div.question').remove();
+    document.querySelector('div.answer').remove();
 }
