@@ -9,7 +9,6 @@ body {
 }
 
 /*Heading CSS*/
-
 h1 {    
     font-family: Helvetica;
     font-size: 5em;
@@ -25,7 +24,6 @@ h2 {
 p {
     font: Helvetica;
 }
-
 
 /*this is the class that is used to create the question card.*/
 .card {
